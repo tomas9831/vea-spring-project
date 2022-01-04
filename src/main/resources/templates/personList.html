@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Person list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+  
+  <table>
+  	<thead>
+  		<tr>
+  			<th>First name</th>
+  			<th>Last name</th>
+  			<th>Day of Birth</th>
+  			<th>Age</th>
+  			<th>Ordes</th>
+  			<th>Actions</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr th:each="person,iter :${persons}">
+  			<td th:text="${person.firstName}" >aa</td>
+  			<td th:text="${person.lastName}" >bb</td>
+  			<td th:text="${person.dayOfBirth}" >111</td>
+  			<td th:text="${person.age}" >10</td>
+  			<td>
+  			<span th:each="order: ${person.orders}" ><span th:text="${order.price}"></span><br/> </span>
+  			</td>
+  			<td>
+  				<a th:href="@{/edit(index=${person.id})}" href="edit?index=0">Edit 1</a>
+  				<a th:href="@{/edit/{index}(index=${person.id})}" href="edit/0">Edit 2</a>
+  				<a th:href="@{/person/{id}/newOrder(id=${person.id})}" href="edit/0">New order</a>
+  			</td>
+  		</tr>
+  	</tbody>
+  </table>
+  	
+	<a th:href="@{new}" href="new">New person</a>
+  	
+  </body>
+
+</html>

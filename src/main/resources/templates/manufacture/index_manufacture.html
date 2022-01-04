@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <title>Product Manager</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">VEA projekt</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Products <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/person">Person table</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/worker">Worker table</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/manufacture">Manufacture table</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div align="center">
+  <h1>Person List</h1>
+  <a href="/manufacture/new">Create New Manufacture</a>
+  <br/><br/>
+  <table border="1" cellpadding="10">
+    <thead>
+    <tr>
+      <th>manufacture ID</th>
+      <th>worker name</th>
+      <th>worker lastname</th>
+      <th>product_id</th>
+      <th>product_name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="manufacture : ${listManufacture}">
+      <td th:text="${manufacture.id}">Manufacture ID</td>
+      <td th:text="${manufacture.worker.firstName}">worker name</td>
+      <td th:text="${manufacture.worker.lastName}">worker lastname</td>
+      <td th:text="${manufacture.product.id}">product id</td>
+      <td th:text="${manufacture.product.name}">product name</td>
+      <td>
+        <a th:href="@{/manufacture/edit/{id}(id=${manufacture.id})}">Edit</a>
+        &nbsp;&nbsp;&nbsp;
+        <a th:href="@{/manufacture/delete/{id}(id=${manufacture.id})}">Delete</a>
+      </td>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
